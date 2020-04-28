@@ -25,7 +25,7 @@ SECRET_KEY = '8%nryhspr&@^oqpr&8w92c8!!0a876u&(83s*1*v3%akw9e)h#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['orizabee-v1.herokuapp.com']
 
 
 # Application definition
