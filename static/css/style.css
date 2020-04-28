@@ -1,0 +1,121 @@
+/* Global */
+body { background: #f1f1f1; font-family: 'Source Sans Pro', sans-serif; font-size: 15px; line-height: 22px; color: #222; margin: 0; }
+a {	color: #504e88; text-decoration: none; font-weight: bold; }
+.grid {	display: grid; grid-template-columns: 1fr repeat(1, minmax(auto, 1500px)) 1fr; }
+section.grid > div { margin-bottom: 20px; grid-column: 2/3; padding: 20px;  background: #fff; border: 1px solid #ccc;  }
+.button a { padding: 2px 5px; display: block; background: #232f3e; color: #fff; text-align: center;  }
+.alt-button a { color: #fff; border-radius: 0px; margin-bottom: 5px; padding: 8px 0px; display: block; width: 100%; text-align: center; }
+
+
+/* Headers */
+h1 { margin: 0px 0px 30px 0px; font-size: 30px; }
+h2 { margin: 0px 0px 20px 0px;  }
+h3 { margin: 0px 0px 10px 0px; }
+h4 { font-size: 16px; }
+
+/* Tables */
+table { border-bottom: 1px solid #bbb; }
+table tr td.head { background: #444; color: #fff; font-weight: 300; font-weight: bold; border: 0px; }
+table tr td.sub-cat { background: #555; color: #fff; }
+table tr td { padding: 5px 10px; border-right: 1px solid #bbb; }
+table tr td.first-col { border-left: 1px solid #bbb; }
+table tr.row1 { background-color: #ddd;  border-radius: 5px 5px 0px 0px;}
+table tr.row2 { background-color: #ccc; }
+
+/* Cards */
+#content { display: grid; grid-gap: 10px; margin-bottom: 20px; } 
+#content .card { border: 1px solid #ddd; padding: 15px; }
+#content .card.side { display: grid; grid-template-columns: 1fr 1.5fr; grid-gap: 10px; }
+#content .card img { width: 100% }
+#content .card .desc { margin-bottom: 15px; }
+.col-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.col-3 { grid-template-columns: 1fr 1fr 1fr; }
+.col-2 { grid-template-columns: 1fr 1fr; }
+.col-1 { grid-template-columns: 1fr; }
+.row1 { background-color:  #232f3e;; }
+.row2 { background-color: #5d6b7d; }
+
+/* Header */ 
+header { align-items: center; padding: 10px 0px; background: #232f3e; }
+header .header { grid-column: 2/3; display: grid; grid-template-columns: 1fr 1fr; }
+header .logo img { width: 160px; padding: 8px 15px 0px 15px; align-self: center; }
+header .search { background: #ddd; justify-self: end; height: 47px; margin: 3px 15px 0px 0px;}
+header .search input[type=text] { border: none; font-size: 17px; padding: 0px 15px; line-height: 47px; width: 322px; }
+header button { border: none; width: 47px; float: right; height: 45px;}
+header i.fa-search { font-size: 22px; color: #444  }
+
+/* Navigation */
+.top-nav { background-color: #232f3e; margin-bottom: 20px; }
+.top-nav ul { grid-column: 2/4; list-style: none; padding: 0;	margin: 0; line-height: 30px; }
+.top-nav li { float: left; display: inline-block; line-height: 45px; }
+.top-nav li > a { padding: 10px 20px; transition: 0.3s; color: #fff;}
+.top-nav li > a:hover { }
+.dropdown {	position: relative;	display: inline-block; }
+.dropdown-content {	width: 1000px; display: none; position: absolute; background-color: #f1f1f1; min-width: 160px;	border: 1px solid #ccc; border-top: 0px; z-index: 1; border-radius: 0px 0px 5px 5px; }
+.dropdown-content > div { width: 225px; float: left; margin: 0px 10px; }
+.dropdown-content a { padding: 0px 10px; display: block; color: #444; line-height: 40px; }
+.dropdown-content .col-1 a { padding: 0px 20px; }
+.dropdown-content a:first-child { margin-top: 10px; }
+.dropdown-content a:last-child { margin-bottom: 10px; }
+.dropdown-content a:hover {	background-color: #ddd; }
+.dropdown-content h4 { margin: 10px 0px; padding: 0px 10px; font-size: 15px; color: #444; border-bottom: 1px solid #bbb; line-height: 30px; }
+.dropdown:hover .dropdown-content {	display: block; }
+
+/* Mobile Navigation */
+header .mobile-icon { display: none; justify-self: end; align-self: flex-end; margin-right: 20px; }
+header .mobile-icon i.fa-bars { font-size: 36px; color: #444; }
+nav.mobile-menu { display: none; background: #ddd; width: 100%; }
+nav.mobile-menu a { display: block; padding: 10px 20px; color: #444;}
+nav.mobile-menu a:hover { background: #ccc; }
+
+/* Homepage - Showcase */
+#showcase { color: #000; height: 400px; background: #aaaaaa; margin-bottom: 20px; }
+#showcase .bg-image { position: absolute;  width: 100%; height: 450px; z-index: -1; filter: brightness(70%); }
+#showcase .showcase-wrap { grid-column: 2/3; padding: 40px 0px 0px 30px; background: url('img/showcase.png') right 50% no-repeat; background-size: 500px; border: 0px; }
+#showcase h1 { margin-bottom: 10px; font-size: 42px; }
+#showcase span { font-size: 35px; font-weight: bold; }
+
+/* Model Page */
+#model .header img { width: 100%; }
+#model .main { display: grid; grid-template-columns: 2.5fr 1fr; grid-gap: 20px;  }
+#model .main .partlists table { width: 100%; }
+#model .history .machines { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 2px; }
+#model .history .machines div { position: relative; }
+#model .history .machines div h3 { margin-bottom: 0px; position: absolute; bottom: 0px; right: 0px; background: #222; color: #fff; padding: 5px; }
+#model .history .machines img { width: 100%; display: block; }
+
+/* Machine Page */
+#machine .partlist { display: grid; grid-template-columns: 1fr 0.5fr; grid-gap: 20px; }
+#machine .part-diagram { border: 1px solid #444; padding: 10px; }
+#machine .part-diagram img { width: 100%; }
+#machine .part-table { height: calc(100vh - 250px); overflow-y: scroll; border: 1px solid #bbb; } 
+#machine .part-table table { width: 100%; border: 0px; }
+#machine .part-table table tr td.first-col { border: 0px; } 
+#machine .part-table table tr td { padding: 3px 10px; }
+
+/* Partlist Page */
+#partlist .machine { display: grid; grid-template-columns: 1fr 650px; grid-gap: 20px; }
+#partlist .machine-table table { width: 100%; }
+#partlist .machine .filter { border: 1px solid #ddd; margin-bottom: 20px; background: #eee; padding: 10px; }
+
+/* Partlist - Help Guides Section */
+#help { margin-bottom: 20px; width: 100%; overflow: hidden; }
+#help .all-steps { width: 500%; height: 100%; display: flex; }
+#help .all-steps input[name="r"]{ position: absolute; visibility: hidden; }
+#help .all-steps .step { width: 20%; transition: 0.3s; }
+#help .all-steps .step div { margin-bottom: 10px; }
+#help .all-steps .step img { border-radius: 50%; border: 3px solid #ddd; float: left; height: 90px; margin-right: 15px; }
+#help .all-steps .step .intro { margin-bottom: 20px; }
+#help .all-steps .step div { width: 100%; display: inline-block; }
+#help .next { background: #eee; padding: 10px; }
+#help .all-steps .tab { padding: 6px 0px; width: 140px; background: #232f3e; color: #fff; cursor: pointer; transition: 0.4s; display: block; text-align: center; float: left; font-weight: bold; }
+#help .all-steps .tab i.fa-chevron-right { margin-left: 2px; font-size: 12px; }
+#help .all-steps .tab i.fa-chevron-left { margin-right: 2px; font-size: 12px; }
+#help .all-steps .tab.next { margin-left: 10px; }
+#r0:checked ~ .s0{ margin-left: 0; }
+#r1:checked ~ .s0{ margin-left: -20%; }
+#r2:checked ~ .s0{ margin-left: -40%; }
+#r3:checked ~ .s0{ margin-left: -60%; }
+#r4:checked ~ .s0{ margin-left: -80%; }
+#help .all-steps .labels img { border-radius: 10px; float:left; margin-right: 5px; height: 80px; }
+#help .all-steps .location img { border-radius: 10px; height: 300px;  }

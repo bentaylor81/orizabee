@@ -1,0 +1,29 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Showcase Section -->
+<!--<section class="grid" id="showcase">
+    <div class="showcase-wrap">
+        <h1>For Owners of Garden Machinery</h1>
+        <span>Want to find your spare parts?</span><br />
+        <a href="" class="btn">Click Here</a>
+    </div>
+</section>-->
+
+<!-- Brands List -->
+<section class="grid"> 
+    <div id="content" class="col-4">
+        {% for items in brands %}
+            <div class="card">
+                <h2>{{ items.brand }}</h2>  
+                <img src="{% static items.small_image.url %}" />            
+                <span>{{ items.short_desc }}</span><br /><br />
+                <div class="alt-button row1 %}"><a href="{% url 'brand-page' items.path %}">View More</a></div>
+            </div>
+        {% endfor %}      
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="grid"> 
+    <div id="brands">
+        <h2>Machine Types contained in Brands</h2>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="head">Brand</td>
+                <td class="head">Machine Type</td>
+            </tr>
+            {% for brand in brands %}
+            <tr class="{% cycle 'row1' 'row2' %}">
+                <td>{{ brand.brand }}</td>
+                <td>
+                    {% for machine_type in brand.machine_type.all %}
+                        {{ machine_type.machine_type }}{% include 'app_websites/global/comma.html' %}
+                    {% endfor %} 
+                </td>
+            {% endfor %}
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section class="grid"> 
+    <div id="brands">
+        <h2>Brands contained in Machine Type</h2>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="head">Machine Type</td>
+                <td class="head">Brand</td>
+            </tr>
+            {% for machine_type in machine_types %}
+            <tr class="{% cycle 'row1' 'row2' %}">    
+                <td>{{ machine_type.machine_type }}</td>
+                <td>
+                    {% for brand in machine_type.brand_set.all %}
+                        {{ brand.brand }}{% include 'app_websites/global/comma.html' %}
+                    {% endfor %}
+                </td>
+            {% endfor %}
+            </tr>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

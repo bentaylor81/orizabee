@@ -1,0 +1,46 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Brand >> Series Section -->
+<section class="grid">
+    <div>
+        {% for brand in brands %}
+        <h1>Series of {{ brand.brand  }}
+            {% for machine_type in brand.machine_type.all %}
+                {{ machine_type }}s{% include 'app_websites/global/comma.html' %}
+            {% endfor %}</h1>
+        {{ brand.desc }}<br /><br />
+        {% endfor %}
+
+        <!-- Cards for Series -->
+        <div id="content" class="col-3">
+        {% for model in models %}
+            {% ifchanged model.series %}
+            {% if forloop.first == False %}</div>{% endif %}
+            <div class="card">
+                <img src="{% static model.series.small_image.url %}" />
+                <h2>{{ model.series.brand }} {{ model.series.series }}</h2>
+                <div class="desc">{{ model.series.short_desc|truncatechars:170 }} <a href="{{ model.series.path }}">view more</a></div>               
+            {% endifchanged %}
+                <div class="alt-button {% cycle 'row1' 'row2' %}"><a href="{{ model.series.path }}/{{ model.path }}">{{ model.model }}</a></div>
+        {% endfor %}    
+            </div>           
+        </div>
+
+
+        
+    </div>
+</section>
+
+
+<!-- Brand >> Series Section -->
+<section class="grid">
+    <div>
+        <h2>Part Lists for Westwood Tractors</h2>
+
+        <a href="partlists">Click Here</a>
+    </div>
+
+{% endblock %}

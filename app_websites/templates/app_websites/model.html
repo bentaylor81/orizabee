@@ -1,0 +1,65 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- Model Overview Section -->
+<section class="grid" id="model">
+    <div class="header">
+    {% for model in models %}
+        <h1>{{ model.series.brand|title }} - {{ model.series.series }} - {{ model.model }}</h1>
+        <img src="{% static model.header_image.url %}" />
+        {{ model.desc }}
+    {% endfor %}
+    <div>
+</section>
+
+<!-- Machines Overview Section -->
+<section class="grid" id="model">
+    <div class="main">
+        <div class="partlists">
+            {% for model in models %}
+            <h2>{{ model.series.brand }} {{ model.model }} Models and Years</h2>           
+            {% endfor %}
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="head">Year</td>
+                    <td class="head">Machine</td>
+                    <td class="head">Description</td> 
+                    <td class="head">Parts List</td>
+                </tr>    
+                {% for machine in machines %} 
+                <tr class="{% cycle 'row1' 'row2' %}">
+                    <td class="first-col">{{ machine.year }}</td>
+                    <td>{{ machine.machine }}</td>
+                    <td>{{ machine.desc}}</td>
+                    <td>
+                        {% for part in machine.part_set.all %}
+                            {% if part.part and forloop.counter < 2 %}
+                                <div class="button"><a href="{{ machine.path }}">View Parts</a></div>    
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                {% endfor %}
+                </tr>
+            </table>
+        </div>
+        <div class="history">
+            <h2>Showcase of the Westwood T1800</h2>      
+            <div class="machines">
+                {% for machine in machines %}  
+                {% if machine.small_image %}    
+                <div>
+                    <img src="{% static machine.small_image.url %}" />
+                    <h3>
+                        {{ machine.year }} - {{ machine.machine }}
+                    </h3>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

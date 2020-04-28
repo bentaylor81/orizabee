@@ -1,0 +1,68 @@
+{% load static %}
+
+<!-- Desktop Header Section -->
+<header class="grid"> 
+    <div class="header">
+        <div class="logo">
+            <a href="home"><img src="{% static 'img/logo.png' %}"></a>
+        </div>
+        <div class="search">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                     <button type="submit"><i class="fa fa-search"></i></button>
+               </form>
+           </div>
+           <div class="mobile-icon">
+               <a href="javascript:void(0);" class="icon" onclick="mobileMenu()">
+                   <i class="fa fa-bars"></i>
+               </a>
+           </div>
+       </div>
+</header>
+
+<!-- Top Navigation Section -->
+<nav class="grid top-nav">
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="dropdown">
+            <a class="dropbtn" href="part-lists.html">Part Lists</a>
+            <div class="dropdown-content">
+                {% for machine_type in machine_types %}
+                {% if machine_type.brand_set.all %}
+                <div>                        
+                    <h4>{{ machine_type.machine_type }}</h4>
+                    {% for brand in machine_type.brand_set.all %}
+                    <a href="/{{ brand.path }}">{{ brand.brand }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>	
+        </li>
+        <!--<li class="dropdown">
+            <a class="dropbtn" href="membership.html">Machines</a>
+            <div class="dropdown-content">
+                <div class="col-1">
+                    <a href="#">Garden Tractors</a>
+                    <a href="#">Lawnmowers</a>
+                    <a href="#">Engines</a>
+                </div>
+            </div>	
+        </li>
+        <li><a href="#">Dealers</a></li>
+        <li><a href="#">Articles</a></li>
+        <li><a href="#">Contact us</a></li>-->
+    </ul>
+</nav>
+
+<!-- Mobile Nav Section -->
+<nav class="mobile-menu">
+    <div id="menu">
+        <a href="#">Home</a>
+        <a href="#">Parts Lists</a>
+        <a href="#">Machines</a>
+        <a href="#">Dealers</a>
+        <a href="#">Articles</a>
+        <a href="#">Contact us</a>
+    </div>
+</nav>

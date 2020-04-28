@@ -1,0 +1,60 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="grid" id="partlist">
+    <div>
+        <h1>{% for brand in brands %}
+            All {{ brand.brand  }}
+                {% for machine_type in brand.machine_type.all %}
+                    {{ machine_type }}s{% include 'app_websites/global/comma.html' %}
+                {% endfor %}
+            {% endfor %}
+        </h1>  
+        <div class="machine">      
+            <div class="machine-table">
+                <div class="filter">
+                    <form method="get">
+                        {{ myFilter.form }}
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="head">Year</td>
+                        <td class="head">Machine</td>
+                        <td class="head">Series</td>
+                        <td class="head">Description</td>
+                        <td class="head">Partlist</td>
+                    </tr>
+                {% for machine in machines %}
+                    <tr class="{% cycle 'row1' 'row2' %}">
+                        <td class="first-col">{{ machine.year }}</td>
+                        <td>{{ machine.machine }}</td>
+                        <td>{{ machine.model.series.series }}</td>
+                        <td>{{ machine.desc }}</td>
+                        <td>
+                        {% for part in machine.part_set.all %}
+                            {% if part.part and forloop.counter < 2 %}
+                                <div class="button"><a href="{{ machine.model.series.path }}/{{ machine.model.path}}/{{ machine.path }}">View Parts</a></div>    
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+            <div class="help">
+                {% if brand_path == 'westwood' %}
+                    {% include 'app_websites/help/westwood.html' %}
+                {% elif brand_path == 'countax' %}
+                    {% include 'app_websites/help/countax.html' %}    
+                {% else %}
+                    There are no help guides.
+                {% endif %}     
+            </div>
+        </div>
+</section>
+
+{% endblock %}

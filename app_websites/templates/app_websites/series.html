@@ -1,0 +1,29 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Brand >> Series Section -->
+<section class="grid">
+    <div>
+        {% for series in series %}
+        <h1>{{series.brand }} {{ series.series }}</h1>
+        {% endfor %}        
+        <div id="content" class="col-1">
+        {% for machine in machines %}
+            {% ifchanged machine.model %}
+            {% if forloop.first == False %}</div>{% endif %}
+            <div class="card side">
+                <img src="{% static machine.model.small_image.url %}" />
+                <div>
+                    <h2>{{ machine.model.series.brand }} {{ machine.model.model }}</h2>
+                    <span>{{ machine.model.desc|truncatechars:400 }} <a href="{{ machine.model.path }}">view more</a></span><br /><br />
+                </div>
+            {% endifchanged %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Machines Overview Section -->
+<section class="grid" id="machine">
+    <div>
+        <h1>
+            {% for machine in machines %}
+            Parts for the 
+                {{ machine.model.series.brand.brand }} 
+                {{ machine.machine }} - 
+                {{ machine.year }}
+            {% endfor %}
+        </h1>
+        <div class="partlist">
+            <div class="part-diagram">
+                {% for part_diagram in part_diagrams %}
+                    <img src="{% static part_diagram.image.url %}" />
+                {% endfor %}
+            </div>
+            <div class="part-table">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="head">No.</td>
+                        <td class="head">Part</td> 
+                        <td class="head">Part Description</td>
+                        <td class="head">Order</td>
+                    </tr>
+                    {% for part in parts %}
+                    <tr class="{% cycle 'row1' 'row2' %}">
+                        <td class="first-col">{{ part.ref_no }}</td>
+                        <td>{{ part.part }}</td>
+                        <td>{{ part.desc }}</td>
+                        <td>
+                        {% if part.link %}
+                            <div class="button"><a target="_blank" href="{{ part.link }}">Buy</a></div>
+                        {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>        
+        </div>
+    </div>
+</section>
+{% endblock %}
