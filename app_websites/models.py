@@ -97,7 +97,7 @@ class Brand(models.Model):
     desc = models.TextField(null=True, blank=True)
     sort_order = models.IntegerField(default='0', null=True, blank=True)
     path = models.CharField(max_length=200, default='brand')
-    small_image = models.ImageField(upload_to='images/brand', blank=True)
+    small_image = models.ImageField(upload_to='media/images/brand', blank=True)
     
     def __str__(self):
         return self.brand
