@@ -29,7 +29,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['orizabee.herokuapp.com']
+ALLOWED_HOSTS = ['orizabee.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'app_websites',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -81,17 +82,30 @@ WSGI_APPLICATION = 'orizabee.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# Uses the LIVE DB Locally
+DATABASES = {
+           'default': {
+              'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        }
+    }
+
+# Comment out when pushing to production
+HEROKU_DB_KEY = config('HEROKU_DB_KEY')
+DATABASES['default'] = dj_database_url.config(default=HEROKU_DB_KEY) 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
+# Uses the LOCAL DB Locally
 DATABASES = {
     'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'orizabee',
-            'USER': 'postgres',
-            'PASSWORD': 'Theturtle1$',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
+    'ENGINE': config('LOCAL_DB_ENGINE'),
+    'NAME': config('LOCAL_DB_NAME'),
+    'USER': config('LOCAL_DB_USER'),
+    'PASSWORD': config('LOCAL_DB_PASSWORD'),
+    'HOST': config('LOCAL_DB_HOST'),
+    'PORT': config('LOCAL_DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -146,3 +160,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 # For Environment Variables
 django_heroku.settings(locals())
+
+# S3 Buckets Config
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = True
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+# Comment the above line out to use local static files. 
