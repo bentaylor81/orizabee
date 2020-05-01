@@ -1,0 +1,38 @@
+### Database Structure ###
+
+# Machine / T1600H in 1987
+    - Many-to-Many with Part
+    - Many-to-Many with Partlist
+    - Many-to-One with Model - (Containing Field)
+
+# PartList / PDF Link
+    - Many-to-many with Machine (Containing Field)
+
+# PartDiagram / Expanded Image 
+    - Many-to-many with Part
+
+# Part / C2345
+    - Many-to-Many with Machine - (Containing Field)
+    - Many-to-Many with PartDiagram - (Containing Field)
+    - Many-to-One with Assembly - (Containing Field)
+
+# Assembly / Gearbox
+    - One-to-Many with Part
+
+# Model / T1600
+    - One-to-Many with Machine
+    - Many-to-One with Series - (Containing Field)
+
+# Series / T Series
+    - One-to-many with Model
+    - Many-to-One with Brand - (Containing Field)
+
+# MachineType / Garden Tractor
+    - Many-to-Many with Brand
+
+# Brand / Westwood
+    - Many-to-Many with MachineType - (Containing Field)
+    - One-to-Many with Series
+
+
+

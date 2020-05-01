@@ -18,7 +18,7 @@
         {% for items in brands %}
             <div class="card">
                 <h2>{{ items.brand }}</h2>  
-                <img src="{% static items.small_image.url %}" />            
+                <img src="{{ items.small_image.url }}" />            
                 <span>{{ items.short_desc }}</span><br /><br />
                 <div class="alt-button row1 %}"><a href="{% url 'brand-page' items.path %}">View More</a></div>
             </div>

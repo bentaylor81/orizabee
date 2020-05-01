@@ -168,7 +168,7 @@ AWS_S3_FILE_OVERWRITE = True
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
-# Comment the above line out to use local static files. 
+# Comment the above 2 lines out to use local static files. 
 
 # For Environment Variables
 django_heroku.settings(locals())
