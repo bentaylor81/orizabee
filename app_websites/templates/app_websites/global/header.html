@@ -52,6 +52,15 @@
         <li><a href="#">Dealers</a></li>
         <li><a href="#">Articles</a></li>
         <li><a href="#">Contact us</a></li>-->
+        {% if user.is_authenticated %}
+        <li class="logged-in">
+            Logged in as <b>{{request.user.first_name}} {{request.user.last_name}}</b>&nbsp;&nbsp;|&nbsp;&nbsp;{% if request.user.is_staff %}<a href="{% url 'home' %}">Admin</a>&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}<a href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="logged-in">
+            <a href="{% url 'login' %}">Login</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{% url 'register' %}">Register</a>
+        </li>    
+        {% endif %}
     </ul>
 </nav>
 

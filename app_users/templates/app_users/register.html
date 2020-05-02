@@ -1,0 +1,32 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="grid" id="register">
+    <div id="content">
+        <h1>Register</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <span class="label">{{ form.username.label }}</span>
+            <span>{{ form.username }}</span>
+            <span class="label">{{ form.first_name.label }}:</span>
+            <span>{{ form.first_name }}</span>
+            <span class="label">{{ form.last_name.label }}:</span>
+            <span>{{ form.last_name }}</span>
+            <span class="label">{{ form.email.label }}</span>
+            <span>{{ form.email }}</span>
+            <span class="label">{{ form.password1.label }}</span>
+            <span>{{ form.password1 }}</span>
+            <span class="label">{{ form.password2.label }}</span>
+            <span>{{ form.password2 }}</span>
+            <input class="button" type="submit" name="Create User">
+        </form>
+        <div>
+            {{ form.errors }}
+        </div>
+        <div>
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
