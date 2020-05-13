@@ -27,7 +27,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['orizabee.herokuapp.com', 'localhost']
 
@@ -92,22 +91,22 @@ DATABASES = {
     }
 
 # Comment out when pushing to production
-#HEROKU_DB_KEY = config('HEROKU_DB_KEY')
-#DATABASES['default'] = dj_database_url.config(default=HEROKU_DB_KEY) 
+HEROKU_DB_KEY = config('HEROKU_DB_KEY')
+DATABASES['default'] = dj_database_url.config(default=HEROKU_DB_KEY) 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
 # Uses the LOCAL DB Locally
-#DATABASES = {
-#    'default': {
-#    'ENGINE': config('LOCAL_DB_ENGINE'),
-#    'NAME': config('LOCAL_DB_NAME'),
-#    'USER': config('LOCAL_DB_USER'),
-#    'PASSWORD': config('LOCAL_DB_PASSWORD'),
-#    'HOST': config('LOCAL_DB_HOST'),
-#    'PORT': config('LOCAL_DB_PORT'),
-#    }
-#}
+DATABASES = {
+    'default': {
+    'ENGINE': config('LOCAL_DB_ENGINE'),
+    'NAME': config('LOCAL_DB_NAME'),
+    'USER': config('LOCAL_DB_USER'),
+    'PASSWORD': config('LOCAL_DB_PASSWORD'),
+    'HOST': config('LOCAL_DB_HOST'),
+    'PORT': config('LOCAL_DB_PORT'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

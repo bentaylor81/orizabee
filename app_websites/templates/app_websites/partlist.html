@@ -1,0 +1,34 @@
+{% extends 'app_websites/global/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="grid" id="partlist">
+    <div>
+    {% for partlist in partlist %}
+        <h1>{{ partlist.partlist }} Part Lists</h1>
+        {% for partlist_section in partlist.partlist_section.all %}
+            <div class="partlist">
+                <h2>{{ partlist_section.partlist_section }}</h2>
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="head">Item Number</td>
+                        <td class="head">Part Number</td>
+                        <td class="head">Description</td>
+                    </tr>
+                {% for part in partlist_section.part.all %}
+                    <tr>   
+                        <td class="first-col">{{ part.item_no }}</td>
+                        <td>{{ part.part }}</td>
+                        <td>{{ part.desc }}</td>
+                    </tr> 
+                {% endfor %}
+                </table>
+                <br />
+            </div>
+        {% endfor %}
+    {% endfor %}
+    </div>
+</section>
+
+
+{% endblock %}

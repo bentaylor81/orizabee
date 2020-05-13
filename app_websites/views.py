@@ -23,6 +23,42 @@ def brand_page(request, brand_path):
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
+def brand_partlists_page(request, brand_path):
+
+        machines = Machine.objects.filter(model__series__brand__path=brand_path)
+        myFilter = MachineFilter(request.GET, queryset=machines)
+        machines = myFilter.qs
+        
+        context = {
+                'brands' : Brand.objects.filter(path=brand_path),
+                'brand_path' : brand_path,
+                'machines' : machines,
+                'myFilter' : MachineFilter()
+                }
+        return render(request, 'app_websites/brand_partlists.html', context )
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def partlists_page(request):
+       
+        context = {
+                'partlists' : PartList.objects.all(),
+                }
+        return render(request, 'app_websites/partlists.html', context )
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def partlist_page(request, partlist_path):
+       
+        context = {
+                'partlist' : PartList.objects.all().order_by(),
+                'partlist_sections' : PartListSection.objects.all(),
+                'parts' : Part.objects.all(),
+                }
+        return render(request, 'app_websites/partlist.html', context )
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def series_page(request, brand_path, series_path):
         context = {
                 'machines' : Machine.objects.filter(model__series__path=series_path).order_by('model__sort_order'),
@@ -49,21 +85,7 @@ def machine_page(request, brand_path, series_path, model_path, machine_path):
         }
         return render(request, 'app_websites/machine.html', context )
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def partlists_page(request, brand_path):
 
-        machines = Machine.objects.filter(model__series__brand__path=brand_path)
-        myFilter = MachineFilter(request.GET, queryset=machines)
-        machines = myFilter.qs
-        
-        context = {
-                'brands' : Brand.objects.filter(path=brand_path),
-                'brand_path' : brand_path,
-                'machines' : machines,
-                'myFilter' : MachineFilter()
-                }
-        return render(request, 'app_websites/partlists.html', context )
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

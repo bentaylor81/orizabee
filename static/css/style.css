@@ -108,10 +108,13 @@ nav.mobile-menu a:hover { background: #ccc; }
 #machine .part-table table tr td.first-col { border: 0px; } 
 #machine .part-table table tr td { padding: 3px 10px; }
 
+/* Brand - Partlist Page */
+#brand-partlist .machine { display: grid; grid-template-columns: 1fr 650px; grid-gap: 20px; }
+#brand-partlist .machine-table table { width: 100%; }
+#brand-partlist .machine .filter { border: 1px solid #ddd; margin-bottom: 20px; background: #eee; padding: 10px; }
+
 /* Partlist Page */
-#partlist .machine { display: grid; grid-template-columns: 1fr 650px; grid-gap: 20px; }
-#partlist .machine-table table { width: 100%; }
-#partlist .machine .filter { border: 1px solid #ddd; margin-bottom: 20px; background: #eee; padding: 10px; }
+#partlist {}
 
 /* Partlist - Help Guides Section */
 #help { margin-bottom: 20px; width: 100%; overflow: hidden; }

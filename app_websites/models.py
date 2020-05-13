@@ -14,32 +14,41 @@ class Machine(models.Model):
     class Meta:
         ordering = ["year"]
 
+class Part(models.Model):
+    part = models.CharField(max_length=200, blank=True)
+    desc = models.CharField(max_length=200, blank=True)  
+    item_no = models.IntegerField(blank=True)
+    # Need to add:
+        # Machine 
+        # Link to GTS
+
+    def __str__(self):
+        return str(self.item_no) + ' | ' + self.part + ' | ' + self.desc
+
+    class Meta:
+        ordering = ["item_no"]
+
+class PartListSection(models.Model):
+    partlist_section = models.CharField(max_length=200, blank=True)
+    part = models.ManyToManyField(Part)
+    part_diagram = models.ImageField(upload_to="images/part", blank=True)	
+    sort_order = models.IntegerField(default='0', null=True, blank=True)					
+
+    def __str__(self):
+        return  str(self.sort_order) + ' | ' + str(self.partlist_section)
+
+    class Meta:
+        ordering = ["sort_order"]
+
 class PartList(models.Model):						
     partlist = models.CharField(max_length=200, blank=True)
-    machine = models.ManyToManyField(Machine)
+    partlist_section = models.ManyToManyField(PartListSection)
     upload = models.FileField(upload_to='pdfs', blank=True) 
+    # Need to add:
+        # Machine many to many
 
     def __str__(self):
         return  str(self.partlist)
-
-class PartDiagram(models.Model):
-    part_diagram = models.CharField(max_length=200, blank=True)
-    image = models.ImageField(upload_to="images/part", blank=True)
-
-    def __str__(self):
-        return self.part_diagram
-
-class Part(models.Model):
-    part = models.CharField(max_length=200, blank=True)
-    assembly = models.ForeignKey('assembly', on_delete=models.CASCADE, null=True, blank=True)
-    part_diagram = models.ManyToManyField(PartDiagram, blank=True)  
-    machine = models.ManyToManyField(Machine, blank=True)
-    desc = models.CharField(max_length=200, blank=True)
-    ref_no = models.IntegerField(blank=True)
-    link = models.CharField(max_length=200, blank=True) 
-
-    def __str__(self):
-        return self.part + ' | ' + self.desc
 
 class Assembly(models.Model):						
     assembly = models.CharField(max_length=200, blank=True)

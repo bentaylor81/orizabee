@@ -7,8 +7,8 @@ admin.site.register(Series)
 admin.site.register(Model)
 admin.site.register(Machine)
 admin.site.register(Part)
-admin.site.register(PartDiagram)
 admin.site.register(PartList)
+admin.site.register(PartListSection)
 admin.site.register(Assembly)
 
 
